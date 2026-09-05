@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>ShopEase | Smart Shopping Assistant</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      background: #f7f8fc;
+      color: #222;
+    }
+
+    /* NAVBAR */
+    .navbar {
+      height: 70px;
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 7%;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+      position: relative;
+      z-index: 10;
+    }
+
+    .logo {
+      font-size: 25px;
+      font-weight: bold;
+      color: #5b4bdb;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 35px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #444;
+      font-size: 15px;
+    }
+
+    .nav-links a:hover {
+      color: #5b4bdb;
+    }
+
+    .cart {
+      background: #5b4bdb;
+      color: white;
+      padding: 11px 18px;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 430px;
+      padding: 70px 8%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: linear-gradient(135deg, #eeeaff, #fdf7f1);
+    }
+
+    .hero-content {
+      max-width: 560px;
+    }
+
+    .tag {
+      display: inline-block;
+      background: #e2ddff;
+      color: #5140c9;
+      padding: 8px 15px;
+      border-radius: 20px;
+      font-size: 13px;
+      margin-bottom: 18px;
+    }
+
+    .hero h1 {
+      font-size: 48px;
+      line-height: 1.1;
+      margin-bottom: 18px;
+      color: #202030;
+    }
+
+    .hero h1 span {
+      color: #5b4bdb;
+    }
+
+    .hero p {
+      font-size: 17px;
+      color: #666;
+      line-height: 1.6;
+      margin-bottom: 25px;
+    }
+
+    .shop-btn {
+      display: inline-block;
+      padding: 14px 25px;
+      background: #5b4bdb;
+      color: white;
+      border-radius: 9px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .shop-btn:hover {
+      background: #4637b8;
+    }
+
+    /* HERO VISUAL */
+    .hero-visual {
+      width: 390px;
+      height: 300px;
+      border-radius: 25px;
+      background: white;
+      box-shadow: 0 15px 40px rgba(70,60,150,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .shopping-icon {
+      font-size: 110px;
+    }
+
+    .floating-card {
+      position: absolute;
+      background: white;
+      padding: 13px 18px;
+      border-radius: 12px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+      font-size: 14px;
+    }
+
+    .card-one {
+      top: 25px;
+      left: -30px;
+    }
+
+    .card-two {
+      bottom: 25px;
+      right: -30px;
+    }
+
+    /* CATEGORIES */
+    .section {
+      padding: 50px 8%;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .section-title h2 {
+      font-size: 30px;
+      margin-bottom: 8px;
+    }
+
+    .section-title p {
+      color: #777;
+    }
+
+    .categories {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .category {
+      background: white;
+      padding: 30px 20px;
+      text-align: center;
+      border-radius: 15px;
+      box-shadow: 0 5px 18px rgba(0,0,0,0.05);
+      transition: 0.3s;
+    }
+
+    .category:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.09);
+    }
+
+    .category-icon {
+      font-size: 42px;
+      margin-bottom: 12px;
+    }
+
+    .category h3 {
+      margin-bottom: 7px;
+    }
+
+    .category p {
+      color: #777;
+      font-size: 14px;
+    }
+
+    /* PRODUCTS */
+    .products {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .product {
+      background: white;
+      border-radius: 15px;
+      padding: 15px;
+      box-shadow: 0 5px 18px rgba(0,0,0,0.05);
+    }
+
+    .product-image {
+      height: 170px;
+      background: #f0f0f5;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 70px;
+      margin-bottom: 15px;
+    }
+
+    .product h3 {
+      font-size: 16px;
+      margin-bottom: 7px;
+    }
+
+    .price {
+      color: #5b4bdb;
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    /* FOOTER */
+    footer {
+      margin-top: 30px;
+      padding: 25px;
+      background: #202030;
+      color: white;
+      text-align: center;
+      font-size: 14px;
+    }
+
+    /* MOBILE */
+    @media (max-width: 800px) {
+
+      .nav-links {
+        display: none;
+      }
+
+      .hero {
+        flex-direction: column;
+        text-align: center;
+        gap: 40px;
+      }
+
+      .hero h1 {
+        font-size: 36px;
+      }
+
+      .hero-visual {
+        width: 90%;
+      }
+
+      .categories,
+      .products {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 500px) {
+      .categories,
+      .products {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+
+    <div class="logo">
+      ShopEase
+    </div>
+
+    <ul class="nav-links">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Categories</a></li>
+      <li><a href="#">Deals</a></li>
+      <li><a href="#">Products</a></li>
+    </ul>
+
+    <div class="cart">
+      🛒 Cart
+    </div>
+
+  </nav>
+
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+
+    <div class="hero-content">
+
+      <div class="tag">
+        ✨ Smart Shopping Experience
+      </div>
+
+      <h1>
+        Find What You Need,
+        <span>Faster.</span>
+      </h1>
+
+      <p>
+        Discover products, compare prices and get personalized
+        shopping recommendations with our AI-powered shopping assistant.
+      </p>
+
+      <a href="#" class="shop-btn">
+        Explore Products →
+      </a>
+
+    </div>
+
+
+    <div class="hero-visual">
+
+      <div class="floating-card card-one">
+        ⭐ 4.8 Rated Products
+      </div>
+
+      <div class="shopping-icon">
+        🛍️
+      </div>
+
+      <div class="floating-card card-two">
+        🤖 AI Shopping Assistant
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- CATEGORIES -->
+  <section class="section">
+
+    <div class="section-title">
+      <h2>Shop by Category</h2>
+      <p>Explore our popular shopping categories</p>
+    </div>
+
+    <div class="categories">
+
+      <div class="category">
+        <div class="category-icon">👕</div>
+        <h3>Fashion</h3>
+        <p>Trending clothes & accessories</p>
+      </div>
+
+      <div class="category">
+        <div class="category-icon">📱</div>
+        <h3>Electronics</h3>
+        <p>Latest gadgets & devices</p>
+      </div>
+
+      <div class="category">
+        <div class="category-icon">🏠</div>
+        <h3>Home</h3>
+        <p>Everything for your home</p>
+      </div>
+
+      <div class="category">
+        <div class="category-icon">💄</div>
+        <h3>Beauty</h3>
+        <p>Beauty & personal care</p>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- PRODUCTS -->
+  <section class="section">
+
+    <div class="section-title">
+      <h2>Popular Products</h2>
+      <p>Some products you may love</p>
+    </div>
+
+    <div class="products">
+
+      <div class="product">
+        <div class="product-image">👟</div>
+        <h3>Running Shoes</h3>
+        <div class="price">₹2,499</div>
+      </div>
+
+      <div class="product">
+        <div class="product-image">🎧</div>
+        <h3>Wireless Headphones</h3>
+        <div class="price">₹1,999</div>
+      </div>
+
+      <div class="product">
+        <div class="product-image">⌚</div>
+        <h3>Smart Watch</h3>
+        <div class="price">₹3,499</div>
+      </div>
+
+      <div class="product">
+        <div class="product-image">🎒</div>
+        <h3>Travel Backpack</h3>
+        <div class="price">₹1,299</div>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <footer>
+    © 2026 ShopEase | Powered by IBM Watson Assistant
+  </footer>
+
+
+  <!-- IBM WATSON ASSISTANT -->
+  <script>
+
+    window.watsonAssistantChatOptions = {
+
+      integrationID: "ec5284cc-a75f-4059-8173-9734519ab5c7",
+
+      region: "https://integrations.au-syd.assistant.watson.appdomain.cloud",
+
+      serviceInstanceID: "c0371fca-e564-4f39-8fe8-28c6eb95aa86",
+
+      onLoad: async (instance) => {
+        await instance.render();
+      }
+
+    };
+
+    setTimeout(function(){
+
+      const t = document.createElement('script');
+
+      t.src =
+        "https://web-chat.global.assistant.watson.appdomain.cloud/versions/" +
+        (window.watsonAssistantChatOptions.clientVersion || 'latest') +
+        "/WatsonAssistantChatEntry.js";
+
+      document.head.appendChild(t);
+
+    });
+
+  </script>
+
+</body>
+</html>
